@@ -35,6 +35,7 @@ mediRoute-ai/
 └── data/
     ├── Training.csv        # Kaggle symptom dataset (Used for model fitting)
     └── Testing.csv         # Kaggle symptom dataset (Used for holdout evaluation)
+```
 
 Local Setup & Deployment
 1. Train the Model Locally
@@ -45,12 +46,14 @@ Clone the repository and enter the directory:
 Bash
 git clone https://github.com/Dhruv-Patel-12/mediRoute-ai.git
 cd mediRoute-ai
-Create a virtual environment and install dependencies:
 
+Create a virtual environment and install dependencies:
 Bash
 python -m venv venv
 venv\Scripts\activate  # On macOS/Linux use: source venv/bin/activate
 pip install -r requirements.txt
+
+
 Execute the training script:
 
 Bash
