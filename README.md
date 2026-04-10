@@ -37,57 +37,57 @@ mediRoute-ai/
     └── Testing.csv         # Kaggle symptom dataset (Used for holdout evaluation)
 ```
 
-Local Setup & Deployment
-1. Train the Model Locally
-You must train the model on your host machine to generate the .pkl artifacts before building the Docker image.
+## Local Setup & Deployment
+
+### 1. Train the Model Locally
+You must train the model on your host machine to generate the `.pkl` artifacts before building the Docker image.
 
 Clone the repository and enter the directory:
-
-Bash
+```bash
 git clone https://github.com/Dhruv-Patel-12/mediRoute-ai.git
 cd mediRoute-ai
+```
 
 Create a virtual environment and install dependencies:
-Bash
+```bash
 python -m venv venv
 venv\Scripts\activate  # On macOS/Linux use: source venv/bin/activate
 pip install -r requirements.txt
-
+```
 
 Execute the training script:
-
-Bash
+```bash
 python model/train.py
-This outputs the model's accuracy on the unseen test set and successfully saves model.pkl and features.pkl.
+```
+*This outputs the model's accuracy on the unseen test set and successfully saves `model.pkl` and `features.pkl`.*
 
-2. Serve the App with Docker
-Once the model is trained, use Docker to serve the application in a clean, isolated environment.
+### 2. Serve the App with Docker
+Once the model is trained, use Docker to serve the application in a clean, isolated environment. 
 
 Build and start the container:
-
-Bash
+```bash
 docker-compose up -d --build
-Access the application in your browser at http://localhost:8501.
+```
+
+Access the application in your browser at `http://localhost:8501`.
 
 To stop the container when you are finished testing:
-
-Bash
+```bash
 docker-compose down
-Testing the NLP Engine
+```
+
+## Testing the NLP Engine
+
 Try pasting these highly realistic, unstructured patient scenarios into the web interface to test the NLP feature extraction and model routing:
 
-"I have really bad chest pain, I can't breathe, and the room is spinning." (Routes to Cardiology)
+* "I have really bad chest pain, I can't breathe, and the room is spinning." (Routes to Cardiology)
+* "My face is breaking out with huge pimples and my skin is so itchy." (Routes to Dermatology)
+* "I am constantly worried and nervous. Sometimes I start panicking out of nowhere." (Routes to Psychiatry)
+* "I have a terrible tummy ache and I keep throwing up after I eat." (Routes to Gastroenterology)
+* "I keep sneezing, I have a runny nose, and I am feeling really drained today." (Routes to ENT Specialist)
 
-"My face is breaking out with huge pimples and my skin is so itchy." (Routes to Dermatology)
-
-"I am constantly worried and nervous. Sometimes I start panicking out of nowhere." (Routes to Psychiatry)
-
-"I have a terrible tummy ache and I keep throwing up after I eat." (Routes to Gastroenterology)
-
-"I keep sneezing, I have a runny nose, and I am feeling really drained today." (Routes to ENT Specialist)
-
-Handling Data Bias
+## Handling Data Bias
 The Kaggle dataset used to train this model heavily biases toward physical diseases and lacks mental health data. To handle these edge cases without retraining on a completely new dataset, a custom "Psychiatry Override" is built into the NLP engine. If the system detects primary keywords like "sad", "crying", or "panicking", it safely routes the patient to a Psychiatrist rather than forcing an inaccurate physical diagnosis.
 
-License
+## License
 This project is licensed under the MIT License.
