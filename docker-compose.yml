@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mediroute-app:
+    build: .
+    container_name: mediroute-ai-container
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
