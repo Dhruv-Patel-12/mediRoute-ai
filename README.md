@@ -11,6 +11,14 @@ Most symptom checkers force users to click through endless checkboxes. This proj
 
 *Disclaimer: This is a portfolio project and AI-powered triage tool. It does not replace professional medical advice or diagnosis.*
 
+## Demo
+![MediRoute AI Screenshot](demo.png)
+
+## Model Performance
+* **Training Accuracy:** 100.0%
+* **Test Set Accuracy:** 100.0%
+* **Dataset:** Kaggle Disease Prediction Dataset (4,920 rows, 132 features)
+
 ## Architecture: Train Local, Serve Container
 
 To mirror real-world production systems, this project strictly separates model training from model serving.
